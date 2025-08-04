@@ -21,7 +21,7 @@ class ProdukController extends Controller
             'kategori' => 'required|string',
             'harga' => 'required|integer',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -40,7 +40,7 @@ class ProdukController extends Controller
             'kategori' => 'required|string',
             'harga' => 'required|integer',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image|max:2048',
+            'foto' => 'nullable|image',
         ]);
 
         if ($request->hasFile('foto')) {

@@ -143,7 +143,10 @@
                     </div>
                     <div class="mb-2">
                         <label>Foto</label>
-                        <input type="file" name="foto" class="form-control">
+                        {{-- Tambahkan id="foto" pada input --}}
+                        <input type="file" name="foto" id="foto" class="form-control">
+                        {{-- Tambahkan tag img untuk preview --}}
+                        <img id="previewFoto" src="#" alt="Preview Foto" class="mt-2" style="max-width: 100%; display: none;"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -153,4 +156,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Ambil elemen input file dan elemen img untuk preview
+    const inputFoto = document.getElementById('foto');
+    const previewFoto = document.getElementById('previewFoto');
+
+    // Tambahkan event listener untuk event 'change' pada input file
+    inputFoto.addEventListener('change', function() {
+        // Ambil file yang dipilih oleh pengguna
+        const file = this.files[0];
+
+        if (file) {
+            // Buat objek FileReader untuk membaca file
+            const reader = new FileReader();
+
+            // Tampilkan gambar di elemen img setelah file berhasil dibaca
+            reader.onload = function(e) {
+                previewFoto.src = e.target.result;
+                previewFoto.style.display = 'block'; // Tampilkan elemen img
+            }
+
+            // Baca file sebagai Data URL (format base64)
+            reader.readAsDataURL(file);
+        } else {
+            // Jika tidak ada file yang dipilih, sembunyikan preview
+            previewFoto.src = '#';
+            previewFoto.style.display = 'none';
+        }
+    });
+</script>
 @endsection

@@ -1,0 +1,110 @@
+body {
+    background-color: #ffffff;
+    padding-top: 100px;
+}
+
+.bg-custom-header-footer {
+    background-color: #e6b34b;
+    color: #212529;
+}
+
+.placeholder-box {
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #555;
+    min-height: 150px;
+    width: 100%;
+    border-radius: 0.25rem;
+}
+
+.section-title {
+    font-weight: bold;
+    color: #333;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.tall-placeholder {
+    height: 420px;
+}
+.small-placeholder {
+    height: 200px;
+}
+.large-placeholder {
+    height: 350px;
+}
+
+.dynamic-background-box {
+    /* Aturan untuk gambar background */
+    background-size: cover; /* Membuat gambar menutupi seluruh area */
+    background-position: center; /* Posisi gambar di tengah */
+
+    /* Aturan untuk menata teks di dalamnya */
+    position: relative; /* Wajib agar teks bisa ditumpuk */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden; /* Memastikan overlay tidak keluar dari border-radius */
+}
+
+/* Membuat lapisan gelap agar teks lebih kontras dan mudah dibaca */
+.dynamic-background-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Lapisan hitam transparan */
+    z-index: 1; /* Lapisan ini berada di bawah teks */
+}
+
+/* Styling untuk konten teks */
+.dynamic-background-box .highlight-text-content {
+    position: relative; /* Agar tidak tertutup oleh lapisan gelap */
+    z-index: 2; /* Pastikan teks berada di lapisan paling atas */
+    color: white;
+    padding: 2rem;
+}
+
+.dynamic-background-box .highlight-text-content h2,
+.dynamic-background-box .highlight-text-content p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.highlight-section {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.slider-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease-in-out;
+    will-change: transform;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.highlight-text-content {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+}
