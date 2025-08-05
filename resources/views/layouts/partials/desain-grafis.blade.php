@@ -19,7 +19,7 @@
 
                     {{-- Overlay Hover --}}
                     <div class="hover-overlay d-flex align-items-center justify-content-center">
-                        <a href="https://wa.me/6287708259500?text=Halo%20saya%20ingin%20membeli%20produk%20{{ urlencode($produk->kategori) }}" 
+                        <a href="https://wa.me/628112890087?text=Halo%20saya%20ingin%20membeli%20produk%20{{ urlencode($produk->kategori) }}" 
                            target="_blank" 
                            class="btn rounded-pill px-4" 
                            style= "background-color: #e8b535; color: #fff;">

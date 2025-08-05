@@ -61,12 +61,8 @@
         
         .topbar { background-color: #fff; padding: 10px 20px; border-bottom: 1px solid #dee2e6; }
         
-        .logout-link:hover { 
-            background-color: #dc3545 !important; 
-            color: #fff !important;
-        }
         .logout-link:hover .sidebar-text, .logout-link:hover i {
-            color: #fff !important;
+            color: #dc3545!important;
         }
         
         @media (max-width: 992px) {

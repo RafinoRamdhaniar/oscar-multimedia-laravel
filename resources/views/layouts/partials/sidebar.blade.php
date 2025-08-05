@@ -24,7 +24,7 @@
 
     {{-- Logout di bagian bawah --}}
     <div class="px-3 py-3 border-top">
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="sidebar-link text-danger text-decoration-none py-2 px-2 rounded logout-link">
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded logout-link">
             <div class="sidebar-link-inner">
                 <i class="bi bi-box-arrow-left fs-5"></i>
                 <span class="sidebar-text">Logout</span>
