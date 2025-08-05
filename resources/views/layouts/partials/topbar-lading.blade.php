@@ -2,7 +2,7 @@
     <div class="container-fluid px-4">
         {{-- Logo --}}
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('Logo Oscar old.png') }}" alt="Oscar Multimedia" style="height: 70px;">
+            <img src="{{ asset('logo_oscar_old.png') }}" alt="Oscar Multimedia" style="height: 70px;">
         </a>
 
         {{-- Tombol Toggler untuk Mobile --}}
