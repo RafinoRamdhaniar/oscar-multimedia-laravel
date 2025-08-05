@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
         <div class="text-center mb-4">
-            <img src="{{ asset('Logo Oscar old.png') }}" alt="Logo" style="width: 120px;">
+            <img src="{{ asset('logo_oscar_old.png') }}" alt="Logo" style="width: 120px;">
         </div>
 
         @if (session('status'))
