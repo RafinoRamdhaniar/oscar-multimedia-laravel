@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name', 'Oscar') }}</title>
+    <link rel="icon" href="{{ asset('logo_oscar_old.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- Bootstrap CSS --}}

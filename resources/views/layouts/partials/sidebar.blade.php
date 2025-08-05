@@ -2,7 +2,7 @@
     {{-- Logo --}}
     <div class="text-center py-3 border-bottom">
         <a href="{{ route('dashboard') }}" class="d-block px-3">
-            <img src="{{ asset('Logo Oscar old.png') }}" alt="Logo" class="logo-img mx-auto d-block">
+            <img src="{{ asset('logo_oscar_old.png') }}" alt="Logo" class="logo-img mx-auto d-block">
         </a>
     </div>
 

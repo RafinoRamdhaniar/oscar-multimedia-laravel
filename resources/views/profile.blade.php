@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('Logo Oscar old.ico') }}">
+    <link rel="icon" href="{{ asset('logo_oscar_old.ico') }}">
     <title>Profil - Oscar Multimedia</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
 
     {{-- Konten Profil --}}
     <main class="container text-center px-4 my-5">
-        <img src="{{ asset('Logo Oscar Old.png') }}" alt="Oscar Multimedia" class="profile-logo">
+        <img src="{{ asset('logo_oscar_old.png') }}" alt="Oscar Multimedia" class="profile-logo">
         <h2 class="fw-bold" style="color: #e8b535;">Oscar Multimedia Ungaran</h2>
 
         <div class="profile-content mt-4">
