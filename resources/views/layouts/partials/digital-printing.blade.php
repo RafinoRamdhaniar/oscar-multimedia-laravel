@@ -5,13 +5,14 @@
         use App\Models\produk;
         $digitalPrintingProducts = produk::where('kategori', 'Digital Printing')->latest()->take(6)->get();
     @endphp
+
     @if($digitalPrintingProducts->count() >= 6)
     <div class="row g-4 align-items-center">
         <!-- KOTAK TINGGI KIRI -->
         <div class="col-lg-3 d-none d-lg-block">
             @php $product = $digitalPrintingProducts[0]; @endphp
             <div class="product-card tall-card position-relative overflow-hidden">
-                <img src="{{ asset('storage/produk/' . $product->foto) }}" alt="{{ $product->nama_produk }}" class="w-100 h-100 object-fit-cover">
+                <img src="{{ asset('storage/' . $product->foto) }}" alt="{{ $product->nama_produk }}" class="w-100 h-100 object-fit-cover">
                 <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                     <h4 class="text-white fw-bold text-center">{{ $product->nama_produk }}</h4>
                     <a href="https://wa.me/6287708259500?text=Halo, saya ingin membeli produk: {{ urlencode($product->nama_produk) }}" target="_blank" class="btn mt-2" style= "background-color: #e8b535; color: #fff;">Beli via WhatsApp</a>
