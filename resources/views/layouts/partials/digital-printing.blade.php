@@ -5,7 +5,6 @@
         use App\Models\produk;
         $digitalPrintingProducts = produk::where('kategori', 'Digital Printing')->latest()->take(6)->get();
     @endphp
-
     @if($digitalPrintingProducts->count() >= 6)
     <div class="row g-4 align-items-center">
         <!-- KOTAK TINGGI KIRI -->
