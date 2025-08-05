@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
 <div class="py-2">
     <h3 class="mb-4">Data Produk Oscar Multimedia</h3>

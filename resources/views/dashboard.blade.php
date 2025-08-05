@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
     <h3 class="mb-4">Dashboard</h3>
 
