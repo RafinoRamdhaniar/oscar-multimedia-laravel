@@ -47,7 +47,7 @@
                             data-bs-target="#editModal{{ $produk->id }}">Edit</button>
 
                         <!-- Form Hapus -->
-                        <form action="{{ route('produk.destroy', $produk) }}" method="POST" class="d-inline"
+                        <form action="{{ route('admin.produk.destroy', $produk) }}" method="POST" class="d-inline"
                             onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                             @csrf
                             @method('DELETE')
@@ -60,7 +60,7 @@
                 <div class="modal fade" id="editModal{{ $produk->id }}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form method="POST" action="{{ route('produk.update', $produk) }}"
+                            <form method="POST" action="{{ route('admin.produk.update', $produk) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -115,7 +115,7 @@
 <div class="modal fade" id="createModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="{{ route('produk.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.produk.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Produk</h5>

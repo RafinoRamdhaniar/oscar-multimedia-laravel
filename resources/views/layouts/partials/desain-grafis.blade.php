@@ -23,7 +23,7 @@
                            target="_blank" 
                            class="btn rounded-pill px-4" 
                            style= "background-color: #e8b535; color: #fff;">
-                            Pesan via WhatsApp
+                            Order Here
                         </a>
                     </div>
                 </div>
