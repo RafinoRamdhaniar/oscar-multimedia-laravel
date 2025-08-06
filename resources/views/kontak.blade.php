@@ -69,22 +69,22 @@
             <div class="col-md-8">
                 <div class="contact-card ">
                     <h5 class="contact-title"><i class="bi bi-geo-alt-fill text-danger me-2"></i>Alamat</h5>
-                    <p class="mb-1">Jl. Bukit Leyangan Indah IV No. 294</p>
-                    <p class="mb-0">Maps: <a href="https://maps.app.goo.gl/YtqGkYRvm8Gt4WXS6" class="contact-link" target="_blank">Oscar Multimedia</a></p>
+                    <p class="mb-1">{{ $kontak->alamat }}</p>
+                    <p class="mb-0">Maps: <a href="{{ $kontak->maps_link }}" class="contact-link" target="_blank">Oscar Multimedia</a></p>
                 </div>
             </div>
 
             <div class="col-md-8">
                 <div class="contact-card ">
                     <h5 class="contact-title"><i class="bi bi-envelope-fill text-primary me-2"></i>Email</h5>
-                    <p class="mb-0">oscarmultimedia.new@gmail.com</p>
+                    <p class="mb-0">{{ $kontak->email }}</p>
                 </div>
             </div>
 
             <div class="col-md-8">
                 <div class="contact-card ">
                     <h5 class="contact-title"><i class="bi bi-phone-fill text-success me-2"></i>Social Media</h5>
-                    <p class="mb-0">Whatsapp: <a href="https://wa.me/message/5H5HU5R4NEDCK1" class="contact-link" target="_blank">Oscar Multimedia</a></p>
+                    <p class="mb-0">Whatsapp: <a href="{{ $kontak->whatsapp_link }}" class="contact-link" target="_blank">Oscar Multimedia</a></p>
                 </div>
             </div>
         </div>

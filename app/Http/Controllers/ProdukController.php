@@ -11,7 +11,7 @@ class ProdukController extends Controller
     public function index()
     {
         $produks = Produk::latest()->get();
-        return view('produk.index', compact('produks'));
+        return view('admin.produk.index', compact('produks'));
     }
 
     public function store(Request $request)

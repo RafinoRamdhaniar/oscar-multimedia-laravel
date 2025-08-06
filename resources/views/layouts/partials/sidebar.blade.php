@@ -14,10 +14,22 @@
                 <span class="sidebar-text">Dashboard</span>
             </div>
         </a>
-        <a href="{{ route('produk.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('produk.index') ? 'active' : '' }}">
+        <a href="{{ route('admin.produk.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.produk.index') ? 'active' : '' }}">
             <div class="sidebar-link-inner">
                 <i class="bi bi-box fs-5"></i>
                 <span class="sidebar-text">Produk</span>
+            </div>
+        </a>
+        <a href="{{ route('admin.kontak.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.kontak.index') ? 'active' : '' }}">
+            <div class="sidebar-link-inner">
+                <i class="bi bi-telephone fs-5"></i>
+                <span class="sidebar-text">Kontak</span>
+            </div>
+        </a>
+        <a href="{{ route('admin.profile.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.profile.index') ? 'active' : '' }}">
+            <div class="sidebar-link-inner">
+                <i class="bi bi-building-gear fs-5"></i>
+                <span class="sidebar-text">Profile</span>
             </div>
         </a>
     </div>

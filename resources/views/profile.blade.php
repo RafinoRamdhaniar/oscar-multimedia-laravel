@@ -56,14 +56,13 @@
 
     {{-- Konten Profil --}}
     <main class="container text-center px-4 my-5">
-        <img src="{{ asset('logo_oscar_old.png') }}" alt="Oscar Multimedia" class="profile-logo">
-        <h2 class="fw-bold" style="color: #e8b535;">Oscar Multimedia Ungaran</h2>
+        @if ($profile->logo)
+            <img src="{{ asset('storage/' . $profile->logo) }}" alt="Oscar Multimedia" class="profile-logo">
+        @endif
+        <h2 class="fw-bold" style="color: #e8b535;">{!! $profile -> judul !!}</h2>
 
         <div class="profile-content mt-4">
-            <p>Oscar Multimedia adalah usaha percetakan yang telah berdiri sejak tahun 2020 di kota Ungaran. Kami melayani berbagai kebutuhan cetak seperti kartu nama, brosur, banner, undangan, stiker, ID card, dan layanan cetak custom lainnya.</p>
-            <p>Dengan mengutamakan kualitas dan kepuasan pelanggan, kami menggunakan mesin cetak modern serta bahan-bahan terbaik untuk setiap produk. Tim kami siap membantu Anda dari desain hingga proses cetak.</p>
-            <p>Tidak hanya melayani perseorangan, Oscar Multimedia juga menjadi mitra terpercaya untuk perusahaan, sekolah, dan instansi dalam memenuhi kebutuhan cetak skala besar maupun kecil.</p>
-            <p>Kunjungi kami langsung di Ungaran atau hubungi kami melalui WhatsApp untuk berkonsultasi dan melakukan pemesanan dengan cepat dan mudah.</p>
+            <p>{!! $profile->konten !!}</p>
         </div>
     </main>
 
