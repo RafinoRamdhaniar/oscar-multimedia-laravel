@@ -41,6 +41,6 @@ class KontakController extends Controller
             ]
         );
 
-        return redirect()->route('kontak.form')->with('success', 'Data kontak berhasil disimpan!');
+        return redirect()->route('admin.kontak.index')->with('success', 'Data kontak berhasil disimpan!');
     }
 }
