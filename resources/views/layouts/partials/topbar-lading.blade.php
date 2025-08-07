@@ -30,7 +30,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#digital-printing">Digital Printing</a></li>
-                        <li><a class="dropdown-item" href="#desain">Desain Grafis</a></li>
+                        <li><a class="dropdown-item" href="#desain">Desain Logo</a></li>
                         <li><a class="dropdown-item" href="#jasa-komputer">Jasa Komputer</a></li>
                     </ul>
                 </li>

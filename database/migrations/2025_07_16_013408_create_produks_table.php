@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
             $table->string('nama_produk');
-            $table->enum('kategori', ['Desain', 'Digital Printing', 'Computer']);
+            $table->enum('kategori', ['Desain Logo', 'Digital Printing', 'Computer']);
             $table->integer('harga');
             $table->text('deskripsi')->nullable();
             $table->string('foto')->nullable(); // untuk upload gambar
