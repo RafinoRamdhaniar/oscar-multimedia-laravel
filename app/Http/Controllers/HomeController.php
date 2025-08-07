@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         // --- Logika untuk Section "Desain Grafis" ---
         // Ambil semua produk 'Desain' untuk fitur tampilkan/sembunyikan
-        $desainProducts = Produk::where('kategori', 'Desain')
+        $desainProducts = Produk::where('kategori', 'Desain Logo')
                                 ->latest()
                                 ->get();
 
