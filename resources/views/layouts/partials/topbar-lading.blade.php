@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
+<nav class="navbar navbar-expand-lg bg-white border-bottom py-3 main-navbar">
     <div class="container-fluid px-4">
         {{-- Logo --}}
         <a class="navbar-brand" href="{{ url('/') }}">
@@ -30,7 +30,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="#digital-printing">Digital Printing</a></li>
-                        <li><a class="dropdown-item" href="#desain">Desain Logo</a></li>
+                        <li><a class="dropdown-item" href="#desain">Desain Grafis</a></li>
                         <li><a class="dropdown-item" href="#jasa-komputer">Jasa Komputer</a></li>
                     </ul>
                 </li>
@@ -38,3 +38,31 @@
         </div>
     </div>
 </nav>
+
+<style>
+.main-navbar {
+    /* Margin untuk tampilan mobile (lebar layar < 768px) */
+    margin-top: 110px; 
+}
+
+/* Media query untuk tampilan tablet dan desktop (lebar layar >= 768px) */
+@media (min-width: 768px) {
+    .main-navbar {
+        /* Margin untuk tampilan desktop */
+        margin-top: 80px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    /* 1. Ubah alignment container utama menjadi ke tengah */
+    .navbar-custom > .container-fluid {
+        justify-content: center !important; /* Paksa item di dalamnya ke tengah */
+    }
+
+    /* 2. Hapus margin atas pada grup menu yang tidak lagi diperlukan */
+    .navbar-custom .d-flex.align-items-center.gap-4 {
+        margin-top: 0 !important;
+    }
+}
+</style>

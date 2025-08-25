@@ -12,8 +12,19 @@
 
     <style>
         /* Kustomisasi Warna dan Style */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
         body {
             background-color: #ffffff; /* Warna latar belakang utama */
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
         }
         .bg-custom-header-footer {
             background-color: #e6b34b; /* Warna kuning/emas untuk header dan footer */

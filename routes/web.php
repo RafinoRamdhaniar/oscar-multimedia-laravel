@@ -25,6 +25,9 @@ Route::get('/kontak', [KontakController::class, 'show'])->name('kontak');
 //     return view('kontak');
 // })->name('kontak');
 
+Route::get('/produk/{produk}', [ProdukController::class, 'show'])->name('detail');
+
+Route::get('/produk', [ProdukController::class, 'katalog'])->name('produk');
 
 Route::middleware('auth')->group(function () {
     // Halaman dashboard (statistik)

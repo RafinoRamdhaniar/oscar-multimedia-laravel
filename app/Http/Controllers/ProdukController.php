@@ -63,4 +63,28 @@ class ProdukController extends Controller
         $produk->delete();
         return redirect()->back()->with('success', 'Produk berhasil dihapus');
     }
+
+    public function katalog(Request $request)
+    {
+        $kategori = Produk::select('kategori')->distinct()->pluck('kategori');
+
+        $query = Produk::query();
+
+        if ($request->filled('kategori')) {
+            $query->where('kategori', $request->kategori);
+        }
+
+        if ($request->filled('search')) {
+            $query->where('nama_produk', 'like', '%' . $request->search . '%');
+        }
+
+        $produks = $query->latest()->get();
+
+        return view('produk', compact('produks', 'kategori'));
+    }
+
+    public function show(Produk $produk)
+    {
+        return view('detail', compact('produk'));
+    }
 }

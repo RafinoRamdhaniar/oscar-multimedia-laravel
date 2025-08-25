@@ -77,7 +77,7 @@
                                     <div class="mb-2">
                                         <label>Kategori</label>
                                         <select name="kategori" class="form-select" required>
-                                            @foreach (['Desain', 'Digital Printing', 'Computer'] as $kategori)
+                                            @foreach (['Desain Logo', 'Digital Printing', 'Computer'] as $kategori)
                                                 <option value="{{ $kategori }}" {{ $produk->kategori == $kategori ? 'selected' : '' }}>
                                                     {{ $kategori }}
                                                 </option>
@@ -130,7 +130,7 @@
                         <label>Kategori</label>
                         <select name="kategori" class="form-select" required>
                             <option disabled selected>-- Pilih Kategori --</option>
-                            <option>Desain</option>
+                            <option>Desain Logo</option>
                             <option>Digital Printing</option>
                             <option>Computer</option>
                         </select>

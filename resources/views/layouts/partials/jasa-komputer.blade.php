@@ -37,11 +37,11 @@
                  class="jasa-komputer-image img-fluid">
 
             <div class="jasa-komputer-overlay">
-                <a href="https://wa.me/628112890087?text=Halo%2C%20saya%20ingin%20menggunakan%20layanan%20jasa%20komputer"
+                <a href="{{ route('produk', ['kategori' => 'Computer']) }}"
                    target="_blank"
                    class="btn px-4 py-2 rounded-pill fw-semibold"
                    style= "background-color: #e8b535; color: #fff;">
-                    Klik Disini
+                    Lihat Semua Produk
                 </a>
             </div>
         </div>
