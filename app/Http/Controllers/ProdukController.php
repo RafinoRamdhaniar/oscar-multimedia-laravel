@@ -12,7 +12,7 @@ class ProdukController extends Controller
     public function index()
     {
         // DITAMBAHKAN: with('kategori') untuk Eager Loading (lebih efisien)
-        $produks = Produk::with('kategori')->latest()->get();
+        $produks = Produk::with('kategori')->latest()->paginate(10);
         // DITAMBAHKAN: Ambil semua kategori untuk form tambah/edit
         $kategoris = Kategori::all();
 

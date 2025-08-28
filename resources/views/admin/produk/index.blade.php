@@ -112,6 +112,25 @@
             </tbody>
         </table>
     </div>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        {{-- Info di kiri --}}
+        <div class="pagination-info">
+            @if($produks->total() > 0)
+                <span class="text-muted small">
+                    Showing {{ $produks->firstItem() }} to {{ $produks->lastItem() }} of {{ $produks->total() }} entries
+                </span>
+            @else
+                <span class="text-muted small">No entries found</span>
+            @endif
+        </div>
+        
+        {{-- Pagination di kanan --}}
+        <div class="pagination-nav">
+            @if($produks->hasPages())
+                {{ $produks->appends(request()->query())->links('pagination::bootstrap-4') }}
+            @endif
+        </div>
+    </div>
 </div>
 
 {{-- Modal Tambah --}}
