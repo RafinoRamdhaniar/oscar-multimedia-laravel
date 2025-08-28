@@ -37,7 +37,7 @@
 
                     <!-- Tombol Aksi -->
                     <div class="d-grid gap-3 d-md-flex justify-content-md-start mt-4">
-                        <a href="https://wa.me/6287708259500?text=Halo, saya ingin memesan produk {{ urlencode($produk->nama_produk) }}" 
+                        <a href="https://wa.me/628112890087?text=Halo, saya ingin memesan produk {{ urlencode($produk->nama_produk) }}" 
                            target="_blank" 
                            class="btn px-4 py-2 fw-semibold shadow-sm"
                            style="background-color: #e8b535; color: #fff; border-radius: 12px; transition: 0.3s;">
