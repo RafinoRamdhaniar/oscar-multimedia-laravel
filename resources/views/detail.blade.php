@@ -20,7 +20,7 @@
                 <!-- Bagian Detail Produk -->
                 <div class="col-md-6">
                     <span class="badge px-3 py-2 mb-3" style="background-color:#e8b535; font-size: 0.9rem;">
-                        {{ $produk->kategori }}
+                        {{ $produk->kategori->nama_kategori }}
                     </span>
                     
                     <h1 class="h3 fw-bold mb-3">{{ $produk->nama_produk }}</h1>

@@ -14,7 +14,7 @@
     {{-- Tabel Produk --}}
     <div class="table-responsive">
         <table class="table table-hover">
-            <thead class="">
+            <thead>
                 <tr>
                     <th>No</th>
                     <th>Foto</th>
@@ -26,7 +26,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($produks as $produk)
+                {{-- MENGGUNAKAN @forelse untuk menangani data kosong --}}
+                @forelse ($produks as $produk)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
@@ -35,18 +36,16 @@
                         @else
                             <span class="text-muted fst-italic">Belum ada foto</span>
                         @endif
-
                     </td>
                     <td>{{ $produk->nama_produk }}</td>
-                    <td>{{ $produk->kategori }}</td>
+                    {{-- DIPERBAIKI: Menggunakan relasi untuk menampilkan nama kategori --}}
+                    <td>{{ $produk->kategori->nama_kategori ?? 'Tidak ada kategori' }}</td>
                     <td>Rp {{ number_format($produk->harga, 0, ',', '.') }}</td>
                     <td>{{ $produk->deskripsi }}</td>
                     <td>
-                        <!-- Tombol Edit -->
                         <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
                             data-bs-target="#editModal{{ $produk->id }}">Edit</button>
 
-                        <!-- Form Hapus -->
                         <form action="{{ route('admin.produk.destroy', $produk) }}" method="POST" class="d-inline"
                             onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                             @csrf
@@ -56,7 +55,7 @@
                     </td>
                 </tr>
 
-                {{-- Modal Edit --}}
+                {{-- Modal Edit (Kode ini sudah benar karena ada di dalam loop) --}}
                 <div class="modal fade" id="editModal{{ $produk->id }}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -76,10 +75,10 @@
                                     </div>
                                     <div class="mb-2">
                                         <label>Kategori</label>
-                                        <select name="kategori" class="form-select" required>
-                                            @foreach (['Desain Logo', 'Digital Printing', 'Computer'] as $kategori)
-                                                <option value="{{ $kategori }}" {{ $produk->kategori == $kategori ? 'selected' : '' }}>
-                                                    {{ $kategori }}
+                                        <select name="kategori_id" class="form-select" required>
+                                            @foreach ($kategoris as $kategori)
+                                                <option value="{{ $kategori->id }}" {{ $produk->kategori_id == $kategori->id ? 'selected' : '' }}>
+                                                    {{ $kategori->nama_kategori }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -105,7 +104,11 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="7" class="text-center">Belum ada data produk.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -124,30 +127,32 @@
                 <div class="modal-body">
                     <div class="mb-2">
                         <label>Nama Produk</label>
-                        <input type="text" name="nama_produk" class="form-control" required>
+                        <input type="text" name="nama_produk" class="form-control" required placeholder="Masukkan nama produk">
                     </div>
                     <div class="mb-2">
                         <label>Kategori</label>
-                        <select name="kategori" class="form-select" required>
-                            <option disabled selected>-- Pilih Kategori --</option>
-                            <option>Desain Logo</option>
-                            <option>Digital Printing</option>
-                            <option>Computer</option>
+                        <select name="kategori_id" class="form-select" required>
+                            {{-- DITAMBAHKAN: Opsi default --}}
+                            <option value="" disabled selected>-- Pilih Kategori --</option>
+                            @foreach ($kategoris as $kategori)
+                                {{-- DIPERBAIKI: Menghapus logika perbandingan dengan $produk --}}
+                                <option value="{{ $kategori->id }}">
+                                    {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-2">
                         <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" required>
+                        <input type="number" name="harga" class="form-control" required placeholder="Masukkan harga">
                     </div>
                     <div class="mb-2">
                         <label>Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control"></textarea>
+                        <textarea name="deskripsi" class="form-control" placeholder="Masukkan deskripsi singkat"></textarea>
                     </div>
                     <div class="mb-2">
                         <label>Foto</label>
-                        {{-- Tambahkan id="foto" pada input --}}
                         <input type="file" name="foto" id="foto" class="form-control">
-                        {{-- Tambahkan tag img untuk preview --}}
                         <img id="previewFoto" src="#" alt="Preview Foto" class="mt-2" style="max-width: 100%; display: none;"/>
                     </div>
                 </div>
@@ -159,30 +164,21 @@
     </div>
 </div>
 
+{{-- SCRIPT SUDAH BENAR --}}
 <script>
-    // Ambil elemen input file dan elemen img untuk preview
     const inputFoto = document.getElementById('foto');
     const previewFoto = document.getElementById('previewFoto');
 
-    // Tambahkan event listener untuk event 'change' pada input file
     inputFoto.addEventListener('change', function() {
-        // Ambil file yang dipilih oleh pengguna
         const file = this.files[0];
-
         if (file) {
-            // Buat objek FileReader untuk membaca file
             const reader = new FileReader();
-
-            // Tampilkan gambar di elemen img setelah file berhasil dibaca
             reader.onload = function(e) {
                 previewFoto.src = e.target.result;
-                previewFoto.style.display = 'block'; // Tampilkan elemen img
+                previewFoto.style.display = 'block';
             }
-
-            // Baca file sebagai Data URL (format base64)
             reader.readAsDataURL(file);
         } else {
-            // Jika tidak ada file yang dipilih, sembunyikan preview
             previewFoto.src = '#';
             previewFoto.style.display = 'none';
         }

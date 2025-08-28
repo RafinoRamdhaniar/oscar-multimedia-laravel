@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\Kategori; // DITAMBAHKAN: Import model Kategori
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -10,45 +11,61 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Data untuk section lain yang mungkin Anda butuhkan
-        $productIds = [1, 5, 8, 12, 15, 3];
-        $digitalPrintingProducts = produk::whereIn('id', $productIds)
-                                    ->orderByRaw('FIELD(id, ' . implode(',', $productIds) . ')')
-                                    ->get();
+        // === LANGKAH 1: Ambil ID Kategori yang dibutuhkan ===
+        $kategoriDesain    = Kategori::where('nama_kategori', 'Desain Logo')->first();
+        $kategoriPrinting  = Kategori::where('nama_kategori', 'Digital Printing')->first();
+        // Anda bisa menambahkan kategori lain jika perlu, misal:
+        $kategoriComputer  = Kategori::where('nama_kategori', 'Computer')->first();
 
-        // Data untuk section lain yang mungkin Anda butuhkan
+        // Ambil ID-nya dengan aman (jika kategori tidak ditemukan, hasilnya akan null)
+        $desainId    = $kategoriDesain?->id;
+        $printingId  = $kategoriPrinting?->id;
+        $computerId  = $kategoriComputer?->id;
+
+        // === PERBAIKAN LOGIKA LAMA ANDA ===
+
+        // --- Logika untuk Section "Digital Printing" ---
+        // DIUBAH: Mengambil produk berdasarkan ID kategori, bukan ID produk statis.
+        $digitalPrintingProducts = Produk::where('kategori_id', $printingId)
+                                         ->latest()
+                                         ->take(6) // Ambil 6 produk terbaru dari kategori ini
+                                         ->get();
+
+        // --- Logika untuk Produk Sorotan (Highlighted) ---
         $highlightedProducts = Produk::latest()->take(4)->get();
         $highlightProduct = Produk::latest()->first();
 
         // --- Logika untuk Carousel ---
-        // 1. Ambil semua kategori yang unik
-        $categories = Produk::select('kategori')->distinct()->get();
-        
-        // 2. Siapkan koleksi untuk menampung produk carousel
+        // DIUBAH: Mengambil data dari tabel Kategori langsung.
+        $categories = Kategori::all();
         $carouselProducts = new Collection();
 
-        // 3. Ambil 1 produk terbaru dari setiap kategori
         foreach ($categories as $category) {
-            $product = Produk::where('kategori', $category->kategori)->latest()->first();
+            // Ambil 1 produk terbaru dari setiap kategori menggunakan ID-nya.
+            $product = Produk::where('kategori_id', $category->id)->latest()->first();
             if ($product) {
                 $carouselProducts->push($product);
             }
         }
 
-        // --- Logika untuk Section "Desain Grafis" ---
-        // Ambil semua produk 'Desain' untuk fitur tampilkan/sembunyikan
-        $desainProducts = Produk::where('kategori', 'Desain Logo')
+        // --- Logika untuk Section "Desain" ---
+        // DIUBAH: Mengambil produk berdasarkan ID kategori 'Desain'.
+        $desainProducts = Produk::where('kategori_id', $desainId)
                                 ->latest()
                                 ->get();
 
         // --- Kirim semua data yang dibutuhkan ke view ---
-        // Bagian ini telah diperbaiki dengan menghapus duplikat
         return view('home', [
-            'carouselProducts'    => $carouselProducts,
-            'desainProducts'      => $desainProducts,
+            'carouselProducts'        => $carouselProducts,
+            'desainProducts'          => $desainProducts,
             'digitalPrintingProducts' => $digitalPrintingProducts,
-            'highlightedProducts' => $highlightedProducts,
-            'highlightProduct'    => $highlightProduct,
+            'highlightedProducts'     => $highlightedProducts,
+            'highlightProduct'        => $highlightProduct,
+            
+            // DITAMBAHKAN: Kirim ID ke view agar bisa dipakai di link
+            'desainId'                => $desainId,
+            'printingId'              => $printingId,
+            'computerId'              => $computerId, // Aktifkan jika perlu
         ]);
     }
 }

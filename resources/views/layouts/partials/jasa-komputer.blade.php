@@ -37,7 +37,7 @@
                  class="jasa-komputer-image img-fluid">
 
             <div class="jasa-komputer-overlay">
-                <a href="{{ route('produk', ['kategori' => 'Computer']) }}"
+                <a href="{{ route('produk', ['kategori' => $computerId]) }}"
                    target="_blank"
                    class="btn px-4 py-2 rounded-pill fw-semibold"
                    style= "background-color: #e8b535; color: #fff;">

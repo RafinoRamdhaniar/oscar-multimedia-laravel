@@ -19,7 +19,7 @@
 
                     {{-- Overlay Hover --}}
                     <div class="hover-overlay d-flex align-items-center justify-content-center">
-                        <a href="{{ route('produk', ['kategori' => 'Desain Logo']) }}"
+                        <a href="{{ route('produk', ['kategori' => $desainId]) }}"
                            class="btn rounded-pill px-4" 
                            style= "background-color: #e8b535; color: #fff;">
                             Lihat Semua Produk

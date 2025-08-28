@@ -6,7 +6,7 @@ use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\KategoriController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -36,9 +36,13 @@ Route::middleware('auth')->group(function () {
         $totalKategori = \App\Models\Produk::select('kategori')->distinct()->count();
         return view('dashboard', compact('totalProduk', 'totalKategori'));
     })->name('dashboard');
+    
+    // Halaman produk (CRUD) 
+    Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('admin.kategori.index');
+    Route::post('/admin/kategori', [KategoriController::class, 'store'])->name('admin.kategori.store');
+    Route::put('/admin/kategori/{kategori}', [KategoriController::class, 'update'])->name('admin.kategori.update');
+    Route::delete('/admin/kategori/{kategori}', [KategoriController::class, 'destroy'])->name('admin.kategori.destroy');
 
-    // Halaman produk (CRUD)
-    // Route::get('/home', [BerandaController::class, 'index']);
     Route::get('/admin/produk', [ProdukController::class, 'index'])->name('admin.produk.index');
     Route::post('/admin/produk', [ProdukController::class, 'store'])->name('admin.produk.store');
     Route::put('/admin/produk/{produk}', [ProdukController::class, 'update'])->name('admin.produk.update');

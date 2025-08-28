@@ -14,6 +14,12 @@
                 <span class="sidebar-text">Dashboard</span>
             </div>
         </a>
+        <a href="{{ route('admin.kategori.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.kategori.index') ? 'active' : '' }}">
+            <div class="sidebar-link-inner">
+                <i class="bi bi-boxes fs-5"></i>
+                <span class="sidebar-text">Kategori Produk</span>
+            </div>
+        </a>
         <a href="{{ route('admin.produk.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.produk.index') ? 'active' : '' }}">
             <div class="sidebar-link-inner">
                 <i class="bi bi-box fs-5"></i>

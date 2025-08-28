@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori; // DITAMBAHKAN: Import model Kategori
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Storage;
@@ -10,18 +11,23 @@ class ProdukController extends Controller
 {
     public function index()
     {
-        $produks = Produk::latest()->get();
-        return view('admin.produk.index', compact('produks'));
+        // DITAMBAHKAN: with('kategori') untuk Eager Loading (lebih efisien)
+        $produks = Produk::with('kategori')->latest()->get();
+        // DITAMBAHKAN: Ambil semua kategori untuk form tambah/edit
+        $kategoris = Kategori::all();
+
+        return view('admin.produk.index', compact('produks', 'kategoris'));
     }
 
     public function store(Request $request)
     {
+        // DIUBAH: Validasi sekarang menggunakan 'kategori_id'
         $data = $request->validate([
             'nama_produk' => 'required|string|max:255',
-            'kategori' => 'required|string',
+            'kategori_id' => 'required|integer|exists:kategoris,id', // Cek apakah ID kategori ada di tabel kategoris
             'harga' => 'required|integer',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image',
+            'foto' => 'nullable|image|max:2048', // Tambahkan batas ukuran file
         ]);
 
         if ($request->hasFile('foto')) {
@@ -30,17 +36,18 @@ class ProdukController extends Controller
 
         Produk::create($data);
 
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan');
     }
 
     public function update(Request $request, Produk $produk)
     {
+        // DIUBAH: Validasi sekarang menggunakan 'kategori_id'
         $data = $request->validate([
             'nama_produk' => 'required|string|max:255',
-            'kategori' => 'required|string',
+            'kategori_id' => 'required|integer|exists:kategoris,id',
             'harga' => 'required|integer',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image',
+            'foto' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('foto')) {
@@ -52,7 +59,7 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        return redirect()->back()->with('success', 'Produk berhasil diperbarui');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui');
     }
 
     public function destroy(Produk $produk)
@@ -61,17 +68,19 @@ class ProdukController extends Controller
             Storage::disk('public')->delete($produk->foto);
         }
         $produk->delete();
-        return redirect()->back()->with('success', 'Produk berhasil dihapus');
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus');
     }
 
     public function katalog(Request $request)
     {
-        $kategori = Produk::select('kategori')->distinct()->pluck('kategori');
+        // DIUBAH: Mengambil data dari tabel Kategori langsung
+        $kategoris = Kategori::all();
 
         $query = Produk::query();
 
+        // DIUBAH: Filter berdasarkan 'kategori_id'
         if ($request->filled('kategori')) {
-            $query->where('kategori', $request->kategori);
+            $query->where('kategori_id', $request->kategori);
         }
 
         if ($request->filled('search')) {
@@ -80,7 +89,7 @@ class ProdukController extends Controller
 
         $produks = $query->latest()->get();
 
-        return view('produk', compact('produks', 'kategori'));
+        return view('produk', compact('produks', 'kategoris'));
     }
 
     public function show(Produk $produk)

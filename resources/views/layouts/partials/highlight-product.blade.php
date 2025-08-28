@@ -1,12 +1,15 @@
-{{-- Ganti section highlight lama Anda dengan kode ini --}}
 @if($carouselProducts->isNotEmpty())
 <section id="product-carousel-section">
     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-        
+
         {{-- Indikator (titik-titik di bawah) --}}
         <div class="carousel-indicators">
             @foreach ($carouselProducts as $product)
-                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}" aria-current="{{ $loop->first ? 'true' : 'false' }}" aria-label="Slide {{ $loop->iteration }}"></button>
+                <button type="button" data-bs-target="#productCarousel" 
+                        data-bs-slide-to="{{ $loop->index }}" 
+                        class="{{ $loop->first ? 'active' : '' }}" 
+                        aria-current="{{ $loop->first ? 'true' : 'false' }}" 
+                        aria-label="Slide {{ $loop->iteration }}"></button>
             @endforeach
         </div>
 
@@ -14,15 +17,24 @@
         <div class="carousel-inner">
             @foreach ($carouselProducts as $product)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                    <div class="carousel-image-container" style="background-image: url('{{ Storage::url($product->foto) }}'); max-height: 600px; overflow: hidden;">
+                    @php
+                        $imageUrl = $product->foto 
+                                    ? Storage::url($product->foto) 
+                                    : asset('images/default.png'); // fallback jika foto null
+                        $kategoriNama = $product->kategori->nama_kategori ?? 'Tanpa Kategori';
+                    @endphp
+
+                    <div class="carousel-image-container" 
+                         style="background-image: url('{{ $imageUrl }}'); max-height: 600px; overflow: hidden;">
                         <div class="carousel-caption-overlay d-flex align-items-center justify-content-center">
                             <div class="text-center text-white">
                                 <h2 class="display-4 fw-bold text-uppercase">
-                                    <a href="#{{ Str::slug($product->kategori) }}" class="text-white text-decoration-none">
-                                        {{ $product->kategori }}
+                                    <a href="#{{ \Illuminate\Support\Str::slug($kategoriNama) }}" 
+                                       class="text-white text-decoration-none">
+                                        {{ $kategoriNama }}
                                     </a>
                                 </h2>
-                                <p class="lead fs-3">{{ $product->nama_produk }}</p>
+                                <p class="lead fs-3">{{ $product->nama_produk ?? 'Produk Tanpa Nama' }}</p>
                             </div>
                         </div>
                     </div>
@@ -45,21 +57,17 @@
 {{-- CSS untuk styling carousel --}}
 <style>
     .carousel-image-container {
-    height: 600px; /* atau sesuaikan tinggi yang kamu inginkan */
-    width: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #fff; /* opsional: beri latar belakang gelap agar sisa ruang tampak bersih */
+        height: 600px;
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #fff; /* supaya rapi kalau gambar kecil */
     }
-
     .carousel-caption-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 </style>
 

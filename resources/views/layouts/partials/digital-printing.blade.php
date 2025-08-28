@@ -1,11 +1,6 @@
 <section id="digital-printing">
     <h2 class="text-center section-title">DIGITAL PRINTING</h2>
 
-    @php
-        use App\Models\produk;
-        $digitalPrintingProducts = produk::where('kategori', 'Digital Printing')->latest()->take(6)->get();
-    @endphp
-
     @if($digitalPrintingProducts->count() >= 6)
     <div class="row g-4 align-items-center">
         <!-- KOTAK TINGGI KIRI -->
@@ -15,10 +10,11 @@
                 <img src="{{ asset('storage/' . $product->foto) }}" alt="{{ $product->nama_produk }}" class="w-100 h-100 object-fit-cover">
                 <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                     <h4 class="text-white fw-bold text-center">{{ $product->nama_produk }}</h4>
-                    <a href="{{ route('produk', ['kategori' => 'Digital Printing']) }}"
-                           class="btn rounded-pill px-4" 
-                           style= "background-color: #e8b535; color: #fff;">
-                            Lihat Semua Produk
+                    {{-- GANTI DENGAN $printingId --}}
+                    <a href="{{ route('produk', ['kategori' => $printingId]) }}"
+                       class="btn rounded-pill px-4" 
+                       style= "background-color: #e8b535; color: #fff;">
+                        Lihat Semua Produk
                     </a>
                 </div>
             </div>
@@ -34,10 +30,11 @@
                             <img src="{{ asset('storage/' . $product->foto) }}" alt="{{ $product->nama_produk }}" class="w-100 h-100 object-fit-cover">
                             <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                                 <h4 class="text-white fw-bold text-center">{{ $product->nama_produk }}</h4>
-                                <a href="{{ route('produk', ['kategori' => 'Digital Printing']) }}"
-                                class="btn rounded-pill px-4" 
-                                style= "background-color: #e8b535; color: #fff;">
-                                Lihat Semua Produk
+                                {{-- GANTI DENGAN $printingId --}}
+                                <a href="{{ route('produk', ['kategori' => $printingId]) }}"
+                                   class="btn rounded-pill px-4" 
+                                   style= "background-color: #e8b535; color: #fff;">
+                                    Lihat Semua Produk
                                 </a>
                             </div>
                         </div>
@@ -53,9 +50,10 @@
                 <img src="{{ asset('storage/' . $product->foto) }}" alt="{{ $product->nama_produk }}" class="w-100 h-100 object-fit-cover">
                 <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                     <h4 class="text-white fw-bold text-center">{{ $product->nama_produk }}</h4>
-                    <a  href="{{ route('produk', ['kategori' => 'Digital Printing']) }}"
-                        class="btn rounded-pill px-4" 
-                        style= "background-color: #e8b535; color: #fff;">
+                    {{-- GANTI DENGAN $printingId --}}
+                    <a href="{{ route('produk', ['kategori' => $printingId]) }}"
+                       class="btn rounded-pill px-4" 
+                       style= "background-color: #e8b535; color: #fff;">
                         Lihat Semua Produk
                     </a>
                 </div>
