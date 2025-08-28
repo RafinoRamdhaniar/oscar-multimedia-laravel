@@ -25,8 +25,7 @@
                     
                     <h1 class="h3 fw-bold mb-3">{{ $produk->nama_produk }}</h1>
                     
-                    @if ($produk->kategori->nama_kategori != "Desain Logo")
-                        
+                    @if (($produk->kategori->nama_kategori ?? '') != "Desain Logo")  
                     <p class="fs-4 fw-semibold text-danger mb-3">
                         Rp {{ number_format($produk->harga, 0, ',', '.') }}
                     </p>
