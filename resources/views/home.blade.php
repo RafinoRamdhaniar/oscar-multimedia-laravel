@@ -2,7 +2,7 @@
 @extends('layouts.guest')
 
 {{-- (Opsional) Mengisi judul halaman spesifik --}}
-@section('title', 'Oscar Multimedia - Landing Page')
+@section('title', 'Oscar Multimedia')
 
 {{-- Mengisi bagian 'content' yang sudah kita siapkan di layout --}}
 @section('content')
