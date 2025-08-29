@@ -14,10 +14,12 @@
         <div class="collapse navbar-collapse" id="storefrontNavbar">
             {{-- Search Bar di Tengah --}}
             <div class="mx-auto" style="width: 100%; max-width: 1100px;">
-                <form class="d-flex" role="search">
+                <form class="d-flex" action="{{ route('produk') }}" method="GET" role="search">
                     <div class="input-group">
-                        <span class="input-group-text bg-light border-end-9" id="search-icon"><i class="bi bi-search"></i></span>
-                        <input class="form-control border-start-0" type="search" placeholder="Mau cetak apa?" aria-label="Search">
+                        <span class="input-group-text bg-light border-end-0" id="search-icon"><i class="bi bi-search"></i></span>
+                        
+                        {{-- UBAH NAMA INPUT MENJADI "search" --}}
+                        <input class="form-control border-start-0" type="search" name="search" placeholder="Mau cari apa?" aria-label="Search" required>
                     </div>
                 </form>
             </div>
@@ -42,14 +44,14 @@
 <style>
 .main-navbar {
     /* Margin untuk tampilan mobile (lebar layar < 768px) */
-    margin-top: 110px; 
+    margin-top: 60px; 
 }
 
 /* Media query untuk tampilan tablet dan desktop (lebar layar >= 768px) */
 @media (min-width: 768px) {
     .main-navbar {
         /* Margin untuk tampilan desktop */
-        margin-top: 80px;
+        margin-top: 40px;
     }
 }
 

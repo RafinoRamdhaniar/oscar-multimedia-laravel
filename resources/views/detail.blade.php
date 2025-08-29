@@ -41,7 +41,7 @@
                            target="_blank" 
                            class="btn px-4 py-2 fw-semibold shadow-sm"
                            style="background-color: #e8b535; color: #fff; border-radius: 12px; transition: 0.3s;">
-                           <i class="bi bi-whatsapp me-2"></i> Beli via WhatsApp
+                           <i class="bi bi-whatsapp me-2"></i> Order via WhatsApp
                         </a>
                         
                         <a href="{{ route('produk') }}" 

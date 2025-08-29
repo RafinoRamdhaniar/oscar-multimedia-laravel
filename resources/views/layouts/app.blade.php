@@ -12,7 +12,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-        body { overflow-x: hidden; background-color: #f8f9fa; }
+        body { 
+            overflow-x: hidden; 
+            background-color: #f8f9fa; 
+        }
+        
         .sidebar {
             min-height: 100vh;
             width: 240px;
@@ -22,53 +26,105 @@
             z-index: 100;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
         }
         .sidebar.collapsed {
             width: 72px;
         }
+        
         .main-content {
             margin-left: 240px;
             transition: margin-left 0.3s ease;
         }
+        
         .main-content.full {
             margin-left: 72px;
         }
+        
         .logo-img {
             width: 100%;
             max-width: 160px;
             height: auto;
             transition: max-width 0.3s ease;
         }
+        
         .sidebar.collapsed .logo-img {
             max-width: 48px;
         }
+        
         .sidebar-link-inner {
             display: flex;
             align-items: center;
             gap: 16px;
             justify-content: flex-start;
         }
+        
         .sidebar.collapsed .sidebar-text {
             display: none;
         }
-        .sidebar-toggle { background: none; border: none; font-size: 1.2rem; color: #000; }
         
-        /* CSS yang disesuaikan untuk sidebar terang */
+        .sidebar-toggle { 
+            background: none; 
+            border: none; 
+            font-size: 1.2rem; 
+            color: #000; 
+        }
+        
         .sidebar a.active {
             background-color: rgba(0, 0, 0, 0.08);
             font-weight: 500;
         }
         
-        .topbar { background-color: #fff; padding: 10px 20px; border-bottom: 1px solid #dee2e6; }
+        .topbar { 
+            background-color: #fff; 
+            padding: 10px 20px; 
+            border-bottom: 1px solid #dee2e6; 
+        }
         
-        .logout-link:hover .sidebar-text, .logout-link:hover i {
+        .logout-link:hover .sidebar-text, 
+        .logout-link:hover i {
             color: #dc3545!important;
         }
         
+        /* Overlay untuk mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        
+        /* Media query untuk mobile */
         @media (max-width: 992px) {
-            .sidebar { width: 72px; }
-            .sidebar.show { width: 240px; }
-            .main-content { margin-left: 72px; }
+            .sidebar {
+                left: -240px; /* Sembunyikan sidebar di luar layar */
+                width: 240px;
+            }
+            
+            .sidebar.collapsed {
+                left: -240px;
+                width: 240px;
+            }
+            
+            .sidebar.show {
+                left: 0; /* Tampilkan sidebar */
+            }
+            
+            .main-content {
+                margin-left: 0; /* Hapus margin di mobile */
+            }
+            
+            .main-content.full {
+                margin-left: 0;
+            }
+            
+            .sidebar-overlay.show {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -100,28 +156,104 @@
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.getElementById('mainContent');
             const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+            function isMobile() {
+                return window.innerWidth <= 992;
+            }
 
             function toggleSidebar() {
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('full');
+                if (isMobile()) {
+                    // Logic untuk mobile
+                    sidebar.classList.toggle('show');
+                    sidebarOverlay.classList.toggle('show');
+                } else {
+                    // Logic untuk desktop
+                    sidebar.classList.toggle('collapsed');
+                    mainContent.classList.toggle('full');
+                }
             }
             
-            if(sidebarToggle) {
-                sidebarToggle.addEventListener('click', toggleSidebar);
-            }
-
-            function checkScreenSize() {
-                if (window.innerWidth <= 992) {
-                    sidebar.classList.add('collapsed');
-                    mainContent.classList.add('full');
-                } else {
-                    sidebar.classList.remove('collapsed');
-                    mainContent.classList.remove('full');
+            function closeSidebar() {
+                if (isMobile()) {
+                    sidebar.classList.remove('show');
+                    sidebarOverlay.classList.remove('show');
                 }
             }
 
-            checkScreenSize();
-            window.addEventListener('resize', checkScreenSize);
+            function isSidebarOpen() {
+                return sidebar.classList.contains('show');
+            }
+
+            // Event listeners
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    toggleSidebar();
+                });
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', closeSidebar);
+            }
+
+            // Tutup sidebar saat klik di main content (mobile only)
+            if (mainContent) {
+                mainContent.addEventListener('click', function() {
+                    if (isMobile() && isSidebarOpen()) {
+                        closeSidebar();
+                    }
+                });
+            }
+
+            // Tutup sidebar saat klik di mana saja di document (mobile only)
+            document.addEventListener('click', function(e) {
+                if (isMobile() && isSidebarOpen()) {
+                    // Cek apakah yang diklik bukan bagian dari sidebar atau tombol toggle
+                    if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                        closeSidebar();
+                    }
+                }
+            });
+
+            // Prevent sidebar dari menutup saat klik di dalam sidebar
+            sidebar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            function handleResize() {
+                if (isMobile()) {
+                    // Mode mobile: sembunyikan sidebar dan hapus class collapsed
+                    sidebar.classList.remove('collapsed', 'show');
+                    mainContent.classList.remove('full');
+                    sidebarOverlay.classList.remove('show');
+                } else {
+                    // Mode desktop: tampilkan sidebar normal
+                    sidebar.classList.remove('show');
+                    sidebarOverlay.classList.remove('show');
+                }
+            }
+
+            // Jalankan saat load dan resize
+            handleResize();
+            window.addEventListener('resize', handleResize);
+
+            // Tutup sidebar saat klik link di mobile
+            const sidebarLinks = sidebar.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMobile()) {
+                        closeSidebar();
+                    }
+                });
+            });
+
+            // Tutup sidebar dengan tombol ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isMobile() && isSidebarOpen()) {
+                    closeSidebar();
+                }
+            });
         });
 
         @if (session('success'))

@@ -6,11 +6,10 @@
             <div class="col-md-3 col-6 product-item my-3 @if($index >= 4) d-none product-toggleable @endif">
                 <div class="card h-100 shadow-sm position-relative overflow-hidden hover-card">
 
-                    {{-- Gambar Produk --}}
+                    {{-- Gambar Produk (SUDAH DIPERBAIKI) --}}
                     <img src="{{ asset('storage/' . $produk->foto) }}" 
-                         class="card-img-top" 
-                         alt="{{ $produk->nama_produk }}" 
-                         style="height: 200px; object-fit: cover;">
+                         class="card-img-top product-image"  {{-- Hapus style inline, tambahkan class baru --}}
+                         alt="{{ $produk->nama_produk }}">
 
                     {{-- Nama Produk --}}
                     <div class="card-body d-flex flex-column text-center">
@@ -21,7 +20,7 @@
                     <div class="hover-overlay d-flex align-items-center justify-content-center">
                         <a href="{{ route('produk', ['kategori' => $desainId]) }}"
                            class="btn rounded-pill px-4" 
-                           style= "background-color: #e8b535; color: #fff;">
+                           style="background-color: #e8b535; color: #fff;">
                             Lihat Semua Produk
                         </a>
                     </div>
@@ -48,6 +47,12 @@
 
 {{-- CSS --}}
 <style>
+    .product-image {
+        aspect-ratio: 1 / 1; /* Membuat rasio lebar:tinggi menjadi 1:1 */
+        object-fit: cover;   /* Memastikan gambar mengisi area tanpa distorsi */
+        width: 100%;
+    }
+
     .product-item {
         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
@@ -77,7 +82,14 @@
         font-weight: 600;
         font-size: 1rem;
     }
-
+        /* === ATURAN KHUSUS UNTUK MOBILE (Layar <= 576px) === */
+    @media (max-width: 575.98px) {
+        .hover-overlay a.btn {
+            /* Kustomisasi ukuran untuk mobile di sini */
+            font-size: 0.6rem; /* Ukuran font lebih kecil */
+            /* padding: 0.5rem 0.5rem; */
+        }
+    }
     .section-title {
         font-weight: bold;
         color: #333;

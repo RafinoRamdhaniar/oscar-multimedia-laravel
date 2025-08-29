@@ -98,7 +98,7 @@
                                 {{-- Overlay tombol detail --}}
                                 <div class="overlay d-flex justify-content-center align-items-center">
                                     <a href="{{ route('detail', $produk->id) }}" 
-                                       class="btn btn-warning text-white fw-bold px-4">
+                                       class="btn btn-warning rounded-pill text-white fw-bold px-4">
                                         Lihat Detail
                                     </a>
                                 </div>

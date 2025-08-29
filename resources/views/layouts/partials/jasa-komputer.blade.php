@@ -29,7 +29,7 @@
         }
     </style>
 <section id="jasa-komputer" class="pt-5" style="margin-bottom: 5px;">
-    <h2 class="text-center section-title mb-4">JASA KOMPUTER</h2>
+    <h2 class="text-center section-title mb-4">SERVICE & ACCESSORIS COMPUTER</h2>
 
     <div class="jasa-komputer-wrapper">
             <img src="{{ asset('jasa komputer.png') }}"
