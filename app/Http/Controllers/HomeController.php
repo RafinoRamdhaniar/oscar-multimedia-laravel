@@ -12,10 +12,10 @@ class HomeController extends Controller
     public function index()
     {
         // === LANGKAH 1: Ambil ID Kategori yang dibutuhkan ===
-        $kategoriDesain    = Kategori::where('nama_kategori', 'Desain Logo')->first();
-        $kategoriPrinting  = Kategori::where('nama_kategori', 'Digital Printing')->first();
+        $kategoriDesain    = Kategori::where('id', '1')->first();
+        $kategoriPrinting  = Kategori::where('id', '2')->first();
         // Anda bisa menambahkan kategori lain jika perlu, misal:
-        $kategoriComputer  = Kategori::where('nama_kategori', 'Computer')->first();
+        $kategoriComputer  = Kategori::where('id', '3')->first();
 
         // Ambil ID-nya dengan aman (jika kategori tidak ditemukan, hasilnya akan null)
         $desainId    = $kategoriDesain?->id;

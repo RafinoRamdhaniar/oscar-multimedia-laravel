@@ -62,7 +62,7 @@
 
 <style>
     .product-card {
-        border-radius: 0.5rem;
+        /* border-radius: 0.5rem; */
         overflow: hidden;
         position: relative;
         transition: transform 0.3s ease, box-shadow 0.3s ease;

@@ -32,8 +32,20 @@
                     @endif
                     
                     <hr class="my-3">
+
+                    @php
+                        $deskripsiItems = preg_split('/\r\n|\r|\n/', $produk->deskripsi);
+                    @endphp
+
+                    <ul class="text-muted">
+                        @foreach($deskripsiItems as $item)
+                            @if(!empty(trim($item)))
+                                <li>{{ ltrim($item, '-') }}</li>
+                            @endif
+                        @endforeach
+                    </ul>
                     
-                    <p class="lead text-muted">{{ $produk->deskripsi }}</p>
+                    {{-- <p class="lead text-muted">{{ $produk->deskripsi }}</p> --}}
 
                     <!-- Tombol Aksi -->
                     <div class="d-grid gap-3 d-md-flex justify-content-md-start mt-4">
