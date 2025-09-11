@@ -25,10 +25,14 @@ class ProdukController extends Controller
         $data = $request->validate([
             'nama_produk' => 'required|string|max:255',
             'kategori_id' => 'required|integer|exists:kategoris,id', // Cek apakah ID kategori ada di tabel kategoris
-            'harga' => 'required|integer',
+            'harga' => 'nullable|integer',
             'deskripsi' => 'nullable|string',
             'foto' => 'nullable|image|max:2048', // Tambahkan batas ukuran file
         ]);
+
+        if (empty($data['harga'])) {
+            unset($data['harga']);
+        }
 
         if ($request->hasFile('foto')) {
             $data['foto'] = $request->file('foto')->store('produk', 'public');
@@ -45,10 +49,14 @@ class ProdukController extends Controller
         $data = $request->validate([
             'nama_produk' => 'required|string|max:255',
             'kategori_id' => 'required|integer|exists:kategoris,id',
-            'harga' => 'required|integer',
+            'harga' => 'nullable|integer',
             'deskripsi' => 'nullable|string',
             'foto' => 'nullable|image|max:2048',
         ]);
+
+        if (empty($data['harga'])) {
+            $data['harga'] = $data['harga'] ?? 0;
+        }
 
         if ($request->hasFile('foto')) {
             if ($produk->foto) {

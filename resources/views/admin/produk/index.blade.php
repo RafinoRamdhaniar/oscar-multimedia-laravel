@@ -86,7 +86,7 @@
                                     <div class="mb-2">
                                         <label>Harga</label>
                                         <input type="number" name="harga" class="form-control"
-                                            value="{{ $produk->harga }}" required>
+                                            value="{{ $produk->harga }}">
                                     </div>
                                     <div class="mb-2">
                                         <label>Deskripsi</label>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="mb-2">
                         <label>Harga</label>
-                        <input type="number" name="harga" class="form-control" required placeholder="Masukkan harga">
+                        <input type="number" name="harga" class="form-control" placeholder="Masukkan harga">
                     </div>
                     <div class="mb-2">
                         <label>Deskripsi</label>
