@@ -109,9 +109,11 @@
                                 <h5 class="card-title fw-bold">{{ $produk->nama_produk }}</h5>
                                 <p class="text-muted small mb-1">{{ $produk->kategori->nama_kategori ?? '-' }}</p>
                                 @if (($produk->kategori->nama_kategori ?? '') != "Desain Logo")
+                                    @if (($produk->harga) != 0)
                                     <p class="fw-bold fs-5 text-danger mb-0">
                                         Rp {{ number_format($produk->harga, 0, ',', '.') }}
                                     </p>
+                                    @endif
                                 @endif
                             </div>
                         </div>
