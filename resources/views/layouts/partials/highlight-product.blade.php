@@ -57,7 +57,7 @@
 {{-- CSS untuk styling carousel --}}
 <style>
     .carousel-image-container {
-        height: 525px;
+        height: 500px;
         width: 100%;
         background-size: contain;
         background-repeat: no-repeat;
