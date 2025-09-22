@@ -28,7 +28,7 @@
             opacity: 1;
         }
     </style>
-<section id="{{ $computerId }}" class="pt-5" style="margin-bottom: 5px;">
+<section id="{{ Str::slug($computerNama, '-') }}" class="pt-5" style="margin-bottom: 5px;">
     <h2 class="text-center section-title mb-4">SERVICE & ACCESSORIS COMPUTER</h2>
 
     <div class="jasa-komputer-wrapper">

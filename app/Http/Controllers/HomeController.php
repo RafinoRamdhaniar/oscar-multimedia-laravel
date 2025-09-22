@@ -21,7 +21,10 @@ class HomeController extends Controller
         $desainId    = $kategoriDesain?->id;
         $printingId  = $kategoriPrinting?->id;
         $computerId  = $kategoriComputer?->id;
-
+        
+        $desainNama    = $kategoriDesain?->nama_kategori;
+        $printingNama  = $kategoriPrinting?->nama_kategori;
+        $computerNama  = $kategoriComputer?->nama_kategori;
         // === PERBAIKAN LOGIKA LAMA ANDA ===
 
         // --- Logika untuk Section "Digital Printing" ---
@@ -66,6 +69,9 @@ class HomeController extends Controller
             'desainId'                => $desainId,
             'printingId'              => $printingId,
             'computerId'              => $computerId,
+            'desainNama'                => $desainNama,
+            'printingNama'              => $printingNama,
+            'computerNama'              => $computerNama,
             'kategoris'                => $categories
         ]);
     }

@@ -32,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         @foreach($kategoris as $kat)
-                        <li><a class="dropdown-item" href="#{{ $kat->id }}">{{ $kat->nama_kategori }}</a></li>
+                        <li><a class="dropdown-item" href="#{{ Str::slug($kat->nama_kategori, '-') }}">{{ $kat->nama_kategori }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -40,16 +40,6 @@
         </div>
     </div>
 </nav>
-                    {{-- @foreach($kategoris as $kat)
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" 
-                                value="{{ $kat->id }}" id="kategori-{{ $kat->id }}"
-                                {{ request('kategori') == $kat->id ? 'checked' : '' }}>
-                            <label class="form-check-label" for="kategori-{{ $kat->id }}">
-                                {{ $kat->nama_kategori }}
-                            </label>
-                        </div>
-                    @endforeach --}}
 <style>
 .main-navbar {
     /* Margin untuk tampilan mobile (lebar layar < 768px) */
