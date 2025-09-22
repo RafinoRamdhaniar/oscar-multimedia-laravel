@@ -65,7 +65,8 @@ class HomeController extends Controller
             // DITAMBAHKAN: Kirim ID ke view agar bisa dipakai di link
             'desainId'                => $desainId,
             'printingId'              => $printingId,
-            'computerId'              => $computerId, // Aktifkan jika perlu
+            'computerId'              => $computerId,
+            'kategoris'                => $categories
         ]);
     }
 }

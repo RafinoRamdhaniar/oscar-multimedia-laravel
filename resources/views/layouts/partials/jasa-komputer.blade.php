@@ -28,7 +28,7 @@
             opacity: 1;
         }
     </style>
-<section id="jasa-komputer" class="pt-5" style="margin-bottom: 5px;">
+<section id="{{ $computerId }}" class="pt-5" style="margin-bottom: 5px;">
     <h2 class="text-center section-title mb-4">SERVICE & ACCESSORIS COMPUTER</h2>
 
     <div class="jasa-komputer-wrapper">
@@ -38,7 +38,6 @@
 
             <div class="jasa-komputer-overlay">
                 <a href="{{ route('produk', ['kategori' => $computerId]) }}"
-                   target="_blank"
                    class="btn px-4 py-2 rounded-pill fw-semibold"
                    style= "background-color: #e8b535; color: #fff;">
                     Lihat Semua Produk

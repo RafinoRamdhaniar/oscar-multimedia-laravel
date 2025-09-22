@@ -1,4 +1,4 @@
-<section id="desain" class="container-fluid py-5">
+<section id="{{ $desainId }}" class="container-fluid py-5">
     <h2 class="text-center section-title mb-5">DESAIN LOGO</h2>
 
     <div id="product-list-container" class="row gx-4 px-3 px-md-5 justify-content-center pb-5">

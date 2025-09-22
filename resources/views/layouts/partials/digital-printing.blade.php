@@ -1,4 +1,4 @@
-<section id="digital-printing" class="container py-5"> {{-- Menambahkan class container dan padding --}}
+<section id="{{ $printingId }}" class="container py-5"> {{-- Menambahkan class container dan padding --}}
     <h2 class="text-center section-title mb-5">DIGITAL PRINTING</h2> {{-- Menambahkan margin bawah --}}
 
     @if($digitalPrintingProducts->count() >= 6)
