@@ -27,7 +27,7 @@ class ProdukController extends Controller
             'kategori_id' => 'required|integer|exists:kategoris,id', // Cek apakah ID kategori ada di tabel kategoris
             'harga' => 'nullable|integer',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image|max:2048', // Tambahkan batas ukuran file
+            'foto' => 'nullable|image|max:10240', // Tambahkan batas ukuran file
         ]);
 
         if (empty($data['harga'])) {

@@ -31,7 +31,6 @@ class HomeController extends Controller
         // DIUBAH: Mengambil produk berdasarkan ID kategori, bukan ID produk statis.
         $digitalPrintingProducts = Produk::where('kategori_id', $printingId)
                                          ->latest()
-                                         ->take(6) // Ambil 6 produk terbaru dari kategori ini
                                          ->get();
 
         // --- Logika untuk Produk Sorotan (Highlighted) ---
