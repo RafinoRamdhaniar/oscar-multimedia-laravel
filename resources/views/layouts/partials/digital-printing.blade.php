@@ -21,7 +21,7 @@
                                             <h5 class="product-title text-white fw-bold text-center mb-3">{{ $product->nama_produk }}</h5>
                                             <a href="{{ route('produk', ['kategori' => $printingId]) }}" 
                                                class="btn btn-detail rounded-pill px-4 py-2">
-                                                <i class="fas fa-eye me-2"></i>Lihat Detail
+                                                <i class="fas fa-eye me-2"></i>Lihat Semua Produk
                                             </a>
                                         </div>
                                     </div>
