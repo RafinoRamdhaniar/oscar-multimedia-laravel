@@ -136,7 +136,7 @@
 
     @media (max-width: 768px) {
         .product-grid-card {
-            height: 220px;
+            height: 150px;
         }
         
         .custom-carousel-arrow {
