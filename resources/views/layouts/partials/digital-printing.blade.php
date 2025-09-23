@@ -34,7 +34,7 @@
         </div>
 
         <!-- Custom Navigation Controls -->
-        @if($digitalPrintingProducts->chunk(8)->count() > 1)
+        <!-- @if($digitalPrintingProducts->chunk(8)->count() > 1)
             <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#digitalPrintingCarousel" data-bs-slide="prev">
                 <div class="custom-carousel-arrow custom-carousel-prev">
                     <i class="fas fa-chevron-left"></i>
@@ -46,10 +46,10 @@
                     <i class="fas fa-chevron-right"></i>
                 </div>
                 <span class="visually-hidden">Next</span>
-            </button>
+            </button> -->
 
             <!-- Custom Indicators -->
-            <div id="tombolgeser" class="carousel-indicators custom-indicators" style="color: #0000;">
+            <!-- <div id="tombolgeser" class="carousel-indicators custom-indicators" style="color: #0000;">
                 @foreach($digitalPrintingProducts->chunk(8) as $chunkIndex => $chunk)
                     <button type="button" 
                             data-bs-target="#digitalPrintingCarousel" 
@@ -59,7 +59,7 @@
                     </button>
                 @endforeach
             </div>
-        @endif
+        @endif -->
     </div>
 </section>
 
