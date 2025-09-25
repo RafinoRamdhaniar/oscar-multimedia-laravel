@@ -16,7 +16,7 @@
         </a>
         <a href="{{ route('admin.popup.index') }}" class="sidebar-link text-black text-decoration-none py-2 px-2 rounded {{ request()->routeIs('admin.popup.index') ? 'active' : '' }}">
             <div class="sidebar-link-inner">
-                <i class="bi bi-speedometer2 fs-5"></i>
+                <i class="bi bi-bell fs-5"></i>
                 <span class="sidebar-text">Popups</span>
             </div>
         </a>
