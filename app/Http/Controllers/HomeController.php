@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
-use App\Models\Kategori; // DITAMBAHKAN: Import model Kategori
+use App\Models\Kategori;
+use App\Models\Popup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -11,6 +12,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $activePopup = Popup::where('is_active', true)->first();
+        
         // === LANGKAH 1: Ambil ID Kategori yang dibutuhkan ===
         $kategoriDesain    = Kategori::where('id', '1')->first();
         $kategoriPrinting  = Kategori::where('id', '2')->first();
@@ -58,6 +61,7 @@ class HomeController extends Controller
 
         // --- Kirim semua data yang dibutuhkan ke view ---
         return view('home', [
+            'activePopup'             => $activePopup,
             'carouselProducts'        => $carouselProducts,
             'desainProducts'          => $desainProducts,
             'digitalPrintingProducts' => $digitalPrintingProducts,

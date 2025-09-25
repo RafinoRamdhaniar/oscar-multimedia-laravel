@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PopupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\ProdukController;
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
         $totalKategori = \App\Models\Produk::select('kategori')->distinct()->count();
         return view('dashboard', compact('totalProduk', 'totalKategori'));
     })->name('dashboard');
+    
+    // Routes untuk Pop-up Management
+    Route::get('/popups', [PopupController::class, 'index'])->name('admin.popup.index');
+    Route::post('/popups', [PopupController::class, 'store'])->name('admin.popup.store');
+    Route::post('/popups/{popup}/set-active', [PopupController::class, 'setActive'])->name('admin.popup.setActive');
+    Route::delete('/popups/{popup}', [PopupController::class, 'destroy'])->name('admin.popup.destroy');
     
     // Halaman produk (CRUD) 
     Route::get('/admin/kategori', [KategoriController::class, 'index'])->name('admin.kategori.index');
