@@ -25,16 +25,9 @@
     const popupOverlay = document.getElementById('infoPopupOverlay');
     const closePopupBtn = document.getElementById('closePopupBtn');
 
-    // Cek apakah pop-up sudah pernah ditampilkan di sesi ini
-    if (!sessionStorage.getItem('infoPopupShown')) {
-        // Jika belum, tampilkan pop-up
-        if (popupOverlay) {
+    if (popupOverlay) {
             popupOverlay.style.display = 'flex';
         }
-
-        // Tandai bahwa pop-up sudah ditampilkan
-        sessionStorage.setItem('infoPopupShown', 'true');
-    }
 
     // Fungsi untuk menutup pop-up
     function closePopup() {
